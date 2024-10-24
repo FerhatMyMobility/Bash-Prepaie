@@ -24,10 +24,10 @@ def search_files_without_phrase_by_date(directory, phrase, target_date):
     return files_without_phrase, total_files_checked
 
 # Interface utilisateur avec Streamlit
-st.title('Recherche de fichiers modifiés sans phrase spécifique')
+st.title('Recherche de fichiers log')
 
 # Sélection du répertoire
-directory = st.text_input('Chemin du répertoire', value=r'C:\Chemin\Vers\Dossier')
+directory = st.text_input('Chemin du répertoire', value=r'\\vsd-gescar01\Perinfo_v2_226\Admin\Logs\Interfaces\import_prepaie')
 
 # Phrase à chercher
 phrase_to_search = st.text_input('Phrase à rechercher', 'Fermeture du journal')
