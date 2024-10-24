@@ -38,20 +38,22 @@ target_date_str = st.text_input('Date cible (AAAA-MM-JJ)', '2024-10-22')
 # Bouton pour lancer la recherche
 if st.button('Lancer la recherche'):
     if directory and phrase_to_search and target_date_str:
-        try:
-            target_date = datetime.strptime(target_date_str, "%Y-%m-%d").date()
-            # Appel de la fonction de recherche
-            files_without_phrase, total_files_checked = search_files_without_phrase_by_date(directory, phrase_to_search, target_date)
+        if os.path.exists(directory):
+            st.success("Le chemin UNC est accessible.")
+            try:
+                target_date = datetime.strptime(target_date_str, "%Y-%m-%d").date()
+                files_without_phrase, total_files_checked = search_files_without_phrase_by_date(directory, phrase_to_search, target_date)
 
-            # Affichage des résultats
-            st.write(f'Nombre total de fichiers consultés : {total_files_checked}')
-            if files_without_phrase:
-                st.write('Fichiers ne contenant pas la phrase :')
-                for file in files_without_phrase:
-                    st.write(file)
-            else:
-                st.write(f'Tous les fichiers contiennent la phrase "{phrase_to_search}".')
-        except ValueError:
-            st.error("Le format de la date est invalide. Utilisez AAAA-MM-JJ.")
+                st.write(f'Nombre total de fichiers consultés : {total_files_checked}')
+                if files_without_phrase:
+                    st.write('Fichiers ne contenant pas la phrase :')
+                    for file in files_without_phrase:
+                        st.write(file)
+                else:
+                    st.write(f'Tous les fichiers contiennent la phrase "{phrase_to_search}".')
+            except ValueError:
+                st.error("Le format de la date est invalide. Utilisez AAAA-MM-JJ.")
+        else:
+            st.error("Le chemin UNC n'est pas accessible. Vérifiez le chemin et les permissions.")
     else:
         st.warning('Veuillez remplir tous les champs.')
