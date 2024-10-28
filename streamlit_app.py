@@ -32,7 +32,7 @@ def verify_directory_access(directory):
 st.title('Recherche de fichiers log')
 
 # Sélection du répertoire (attention : chemin mappé à vérifier)
-directory = r'L:\Admin\Logs\Interfaces\import_prepaie'
+directory = st.text_input('Chemin du répertoire', r'L:\Admin\Logs\Interfaces\import_prepaie')
 
 # Phrase à chercher
 phrase_to_search = st.text_input('Phrase à rechercher', 'Fermeture du journal')
