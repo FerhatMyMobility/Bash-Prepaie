@@ -27,7 +27,7 @@ def search_files_without_phrase_by_date(directory, phrase, target_date):
 st.title('Recherche de fichiers log')
 
 # Sélection du répertoire
-directory = os.path.normpath(st.text_input('Chemin du répertoire', r'L:\Admin\Logs\Interfaces\import_prepaie'))
+directory = (r'L:\Admin\Logs\Interfaces\import_prepaie'))
 
 # Phrase à chercher
 phrase_to_search = st.text_input('Phrase à rechercher', 'Fermeture du journal')
